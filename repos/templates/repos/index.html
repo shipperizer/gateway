@@ -1,0 +1,10 @@
+{% if repo_list %}
+    <ul>
+    {% for repo in repo_list %}
+        {{repo}}
+        <li><a href= "{% url 'repos:detail' repo.id %}">{{ repo.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No repositories are available.</p>
+{% endif %}

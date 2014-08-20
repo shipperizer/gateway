@@ -1,0 +1,6 @@
+<h1>{{ repo.name }}</h1>
+<ul>
+{% for file in repo.file_set.all %}
+    <li>{ { file.path }/{ file.name } }</li>
+{% endfor %}
+</ul>
