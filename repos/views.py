@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
-from repos.models import Repo
+from repos.models import Repo, File
 import logging
 
 logger = logging.getLogger()
@@ -24,9 +24,8 @@ class FilesView(generic.ListView):
     context_object_name = 'file_list'
     
     def get_queryset(self):
-        logger.error(self)
-        logger.error(Repo.objects.get(self.object.id).file_set.all())
         return Repo.objects.get(self.object.id).file_set.all()
 
-def delete(request, repo_id):
-    return HttpResponse("You're removing a repo %s." % repo_id)
+def delete(request, file_id):
+    file = File.objects.get(pk=file_id)
+    return HttpResponseRedirect("DELETE %s." % file.url )
